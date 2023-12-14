@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "295894611687",
+    "project_id": "signin-39b56",
+    "storage_bucket": "signin-39b56.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:295894611687:android:19f045dc37d8ecde6f9442",
+        "android_client_info": {
+          "package_name": "com.example.newadbee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "295894611687-nq2amoj91fcg8fjck49edipleoqniuh5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBW5CIW2tm2Pr9JjtsowGgwJi7zKKwap4s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "295894611687-nq2amoj91fcg8fjck49edipleoqniuh5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

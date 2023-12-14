@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="180" height="180" viewBox="0 0 180 180">
+  <defs>
+    <clipPath id="clip-path">
+      <circle id="Ellipse_29" data-name="Ellipse 29" cx="90" cy="90" r="90" transform="translate(124 175)" fill="#fee19d"/>
+    </clipPath>
+    <filter id="Ellipse_30" x="-12" y="-8" width="204" height="204" filterUnits="userSpaceOnUse">
+      <feOffset dy="4" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feFlood flood-opacity="0.251"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Rectangle_58" x="-90" y="-56" width="361" height="291" filterUnits="userSpaceOnUse">
+      <feOffset dy="5" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="40" result="blur-2"/>
+      <feFlood flood-color="#666" flood-opacity="0.129"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Rectangle_58-2" x="-69" y="2" width="361" height="291" filterUnits="userSpaceOnUse">
+      <feOffset dy="5" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="40" result="blur-3"/>
+      <feFlood flood-color="#666" flood-opacity="0.129"/>
+      <feComposite operator="in" in2="blur-3"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Rectangle_59" x="-58" y="-97" width="295" height="295" filterUnits="userSpaceOnUse">
+      <feOffset dy="5" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="40" result="blur-4"/>
+      <feFlood flood-color="#666" flood-opacity="0.2"/>
+      <feComposite operator="in" in2="blur-4"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Ellipse_29-2" data-name="Ellipse 29" transform="translate(-124 -175)" clip-path="url(#clip-path)">
+    <g transform="matrix(1, 0, 0, 1, 124, 175)" filter="url(#Ellipse_30)">
+      <circle id="Ellipse_30-2" data-name="Ellipse 30" cx="90" cy="90" r="90" fill="#c38e1a"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 124, 175)" filter="url(#Rectangle_58)">
+      <rect id="Rectangle_58-3" data-name="Rectangle 58" width="121" height="51" rx="8" transform="translate(30 59)" fill="#2c4364"/>
+    </g>
+    <rect id="Rectangle_60" data-name="Rectangle 60" width="60" height="8" rx="4" transform="translate(204 256)" fill="#5a6981"/>
+    <rect id="Rectangle_63" data-name="Rectangle 63" width="28" height="28" rx="14" transform="translate(194 274) rotate(180)" fill="#5a6981"/>
+    <g transform="matrix(1, 0, 0, 1, 124, 175)" filter="url(#Rectangle_58-2)">
+      <rect id="Rectangle_58-4" data-name="Rectangle 58" width="121" height="51" rx="8" transform="translate(51 117)" fill="#2c4364"/>
+    </g>
+    <rect id="Rectangle_60-2" data-name="Rectangle 60" width="60" height="8" rx="4" transform="translate(225 314)" fill="#5a6981"/>
+    <rect id="Rectangle_63-2" data-name="Rectangle 63" width="28" height="28" rx="14" transform="translate(215 332) rotate(180)" fill="#5a6981"/>
+    <path id="Rectangle_60-3" data-name="Rectangle 60" d="M0,0H71V-71H0Z" transform="translate(178 256)" fill="#427853"/>
+    <g transform="matrix(1, 0, 0, 1, 124, 175)" filter="url(#Rectangle_59)">
+      <path id="Rectangle_59-2" data-name="Rectangle 59" d="M0,0H55V-55H0Z" transform="translate(62 73)" fill="#47cb84"/>
+    </g>
+    <rect id="Frame_Frame_Background_" data-name="Frame [Frame Background]" width="37" height="37" transform="translate(195 202)" fill="none"/>
+    <path id="Vector" d="M25.655,4.407A15.018,15.018,0,1,1,15.031,0,15.047,15.047,0,0,1,25.655,4.407Zm-3.774,7.6a1.157,1.157,0,0,0-1.887-1.261l-7.276,7.277-2.651-2.652a1.157,1.157,0,1,0-1.636,1.636L11.9,20.474a1.156,1.156,0,0,0,1.636,0l8.094-8.094a1.157,1.157,0,0,0,.251-.375Z" transform="translate(198.469 205.469)" fill="#fff"/>
+  </g>
+</svg>

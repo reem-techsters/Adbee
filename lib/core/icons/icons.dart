@@ -1,0 +1,40 @@
+import 'package:flutter_svg/flutter_svg.dart';
+
+class KIcon {
+  static final arrowup = SvgPicture.asset('assets/svg/arrowup.svg');
+  static final arrowdown = SvgPicture.asset('assets/svg/arrowdown.svg');
+  static final arrowRight = SvgPicture.asset('assets/svg/arrow_right.svg');
+  static final closemenu = SvgPicture.asset('assets/svg/closemenu.svg');
+  static final creditcard = SvgPicture.asset('assets/svg/credit_card.svg');
+  static final cake = SvgPicture.asset('assets/svg/cake.svg');
+  static final call = SvgPicture.asset('assets/svg/call.svg');
+  static final download = SvgPicture.asset('assets/svg/download.svg');
+  static final earning = SvgPicture.asset('assets/svg/earning.svg');
+  static final editbuttonicon = SvgPicture.asset('assets/svg/editicon.svg');
+  static final editnow = SvgPicture.asset('assets/svg/editnow.svg');
+  static final google = SvgPicture.asset('assets/svg/google.svg');
+  static final gender = SvgPicture.asset('assets/svg/gender.svg');
+  static final gift = SvgPicture.asset('assets/svg/gift.svg');
+  static final incoming = SvgPicture.asset('assets/svg/incoming_call.svg');
+  static final imagepicker = SvgPicture.asset('assets/svg/imagepicker.svg');
+  static final key = SvgPicture.asset('assets/svg/key.svg');
+  static final keypad = SvgPicture.asset('assets/svg/keypad.svg');
+  static final mail = SvgPicture.asset('assets/svg/mail.svg');
+  static final missed = SvgPicture.asset('assets/svg/missed_call.svg');
+  static final outgoing = SvgPicture.asset('assets/svg/outgoing_call.svg');
+  static final person = SvgPicture.asset('assets/svg/person.svg');
+  static final phone = SvgPicture.asset('assets/svg/phone.svg');
+  static final profession = SvgPicture.asset('assets/svg/profession.svg');
+  static final rem = SvgPicture.asset('assets/svg/rem.svg');
+  static final ruppee = SvgPicture.asset('assets/svg/ruppee.svg');
+  static final refpeople = SvgPicture.asset('assets/svg/referredpeople.svg');
+  static final referalgift = SvgPicture.asset('assets/svg/referalgift.svg');
+  static final share = SvgPicture.asset('assets/svg/share.svg');
+  static final success = SvgPicture.asset('assets/svg/success.svg');
+  static final search = SvgPicture.asset('assets/svg/search.svg');
+  static final uname = SvgPicture.asset('assets/svg/u_name.svg');
+  static final verified = SvgPicture.asset('assets/svg/verified.svg');
+  static final wallet = SvgPicture.asset('assets/svg/wallet.svg');
+  static final whiteWallet = SvgPicture.asset('assets/svg/white_wallet.svg');
+  static final whiteCoin = SvgPicture.asset('assets/svg/white_coin.svg');
+}

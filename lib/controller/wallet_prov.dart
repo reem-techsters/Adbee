@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:newadbee/controller/bank_prov.dart';
 import 'package:newadbee/model/earnings_model.dart';
 import 'package:newadbee/model/payments_model.dart';
 import 'package:newadbee/model/profile_model.dart';
@@ -8,6 +10,7 @@ import 'package:newadbee/services/profile_services.dart';
 import 'package:newadbee/services/referral_services.dart';
 import 'package:newadbee/services/wallet_services.dart';
 import 'package:newadbee/widgets/custom_snackbar.dart';
+import 'package:provider/provider.dart';
 
 class WalletProv extends ChangeNotifier {
   final GlobalKey<FormState> walletformKey = GlobalKey<FormState>();
@@ -70,6 +73,8 @@ class WalletProv extends ChangeNotifier {
     required BuildContext context,
   }) async {
     notifyListeners();
+    // final bankprov = Provider.of<BankProv>(context, listen: false);
+    // if (bankprov.listBank[0].uBankAccNo != null) {
     if (walletformKey.currentState!.validate()) {
       if (selectedValue != 0) {
         await WalletServices().paymentWithdrawal(
@@ -89,6 +94,9 @@ class WalletProv extends ChangeNotifier {
         showCustomSnackbar(context, 'Choose payment option', false);
       }
     }
+    // } else {
+    //   showCustomSnackbar(context, 'Add Bank Details', false);
+    // }
   }
 
   List<Referral> listReferral = [];

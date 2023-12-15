@@ -28,6 +28,10 @@ class _TicketScreenState extends State<TicketScreen>
     provider.getProfileDetails(context);
     provider.getOpenTicket(context);
     provider.getClosedTicket(context);
+    provider.replyTicketOPENController = List.generate(
+        provider.listOpenTicket.length, (_) => TextEditingController());
+        provider.replyTicketCLOSEDController = List.generate(
+        provider.listClosedTicket.length, (_) => TextEditingController());
 
     _tabController = TabController(length: 2, vsync: this);
   }

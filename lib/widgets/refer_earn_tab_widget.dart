@@ -229,20 +229,25 @@ referAndEarnTab({
                                     ),
                                   ),
                                   kheight3,
-                                  RichText(
-                                    text: TextSpan(
-                                      style: KFont()
-                                          .welcomeTextStyle
-                                          .copyWith(color: kGreyBlackColor),
-                                      children: [
-                                        TextSpan(text: 'Reached '),
-                                        TextSpan(
-                                            text:
-                                                '[100 milestone on ${formatDateTime(listReferral[index].uDob.toString())}]',
-                                            style: KFont().welcomeTextStyle),
-                                      ],
-                                    ),
-                                  ),
+                                  listReferral[index].isRedeemed == 0
+                                      ? Text('Pending',
+                                          style: KFont().welcomeTextStyle)
+                                      : RichText(
+                                          text: TextSpan(
+                                            style: KFont()
+                                                .welcomeTextStyle
+                                                .copyWith(
+                                                    color: kGreyBlackColor),
+                                            children: [
+                                              TextSpan(text: 'Reached '),
+                                              TextSpan(
+                                                  text:
+                                                      '[100 milestone on ${formatDateTime(listReferral[index].redeemedDate.toString())}]',
+                                                  style:
+                                                      KFont().welcomeTextStyle),
+                                            ],
+                                          ),
+                                        ),
                                 ],
                               ),
                             ],

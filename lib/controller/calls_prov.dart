@@ -8,9 +8,13 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:phone_state/phone_state.dart';
 
 class CallsFetchProv extends ChangeNotifier {
-Future<void> walletBalace()async{
+  bool isAnswered = false;
+  Future<void> toggleAnswered(BuildContext context) async {
+    isAnswered = !isAnswered;
 
-}
+    log('isAnswered is --> ${isAnswered.toString()}');
+    notifyListeners();
+  }
 
   Future<void> openContactForm() async {
     try {

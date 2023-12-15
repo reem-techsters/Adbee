@@ -61,6 +61,8 @@ class BankServices {
     required String accnum,
     required String ifsc,
     required String upi,
+    required String bankname,
+    required String branch,
   }) async {
     final provider = Provider.of<SharedPrefsProv>(context, listen: false);
     final userUniqueId = await provider.getString('user_id');
@@ -71,10 +73,12 @@ class BankServices {
         "user_unique_id": userUniqueId!,
         "account_number": accnum,
         "ifsc_code": ifsc,
-        "upi": upi
+        "upi": upi,
+        "bankname": bankname,
+        "branch": branch
       };
 
-      log('Request Body --> ${jsonEncode(requestBody)}');
+      print('Request Body --> ${jsonEncode(requestBody)}');
       final response = await http.post(
           Uri.parse('https://api.adbee.biz/api/set_data.php?action=profile'),
           body: jsonEncode(requestBody));

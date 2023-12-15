@@ -1,9 +1,12 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:newadbee/core/colors/colors.dart';
+import 'package:newadbee/core/formats/date_format.dart';
 import 'package:newadbee/model/look_up_model.dart';
 import 'package:newadbee/services/look_up_services.dart';
 import 'package:newadbee/services/registration_services.dart';
 import 'package:newadbee/view/registration/referral_code_screen.dart';
+import 'package:newadbee/widgets/custom_snackbar.dart';
 
 class RegistrationProv extends ChangeNotifier {
   final GlobalKey<FormState> createaccountformKey = GlobalKey<FormState>();
@@ -317,7 +320,8 @@ class RegistrationProv extends ChangeNotifier {
     required BuildContext context,
     required String mobile,
   }) async {
-    if (completeprofileformKey.currentState!.validate()) {
+    if (completeprofileformKey.currentState!.validate() ||
+        dobController.text.isNotEmpty) {
       Navigator.push(
           context,
           MaterialPageRoute(
@@ -325,6 +329,10 @@ class RegistrationProv extends ChangeNotifier {
               mobile: mobile,
             ),
           ));
+    } else {
+      if (dobController.text.isEmpty) {
+        showCustomSnackbar(context, 'Please select your date of birth', false);
+      }
     }
   }
 
@@ -345,6 +353,40 @@ class RegistrationProv extends ChangeNotifier {
         district: districtID,
         pincode: pincodeController.text,
         referral: referralCodeController.text);
+  }
+
+  DateTime selectedDate = DateTime.now();
+
+  Future<void> selectDob(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+      selectableDayPredicate: (DateTime day) {
+        return day.isBefore(DateTime.now().add(Duration(days: 1)));
+      },
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            primaryColor: kButtonColorOrange,
+            cardColor: kButtonColorOrange,
+            colorScheme: ColorScheme.light(primary: kButtonColorOrange),
+            buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary),
+            canvasColor: kWhite,
+          ),
+          child: child!,
+        );
+      },
+    );
+
+    if (picked != null && picked != selectedDate) {
+      selectedDate = picked;
+
+      dobController =
+          TextEditingController(text: formatDob(picked.toString()).toString());
+      notifyListeners();
+    }
   }
 }
 

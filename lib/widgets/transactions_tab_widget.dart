@@ -58,7 +58,7 @@ transactionsTab({
                                     children: <TextSpan>[
                                       TextSpan(
                                         text:
-                                            '${listTransactions[index].amountRs.toString()} Coins',
+                                            '${listTransactions[index].amountRs.toString()} Rs',
                                         style: TextStyle(
                                             fontFamily: 'Roboto',
                                             color: kPrimaryColor,

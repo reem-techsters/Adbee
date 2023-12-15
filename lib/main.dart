@@ -20,6 +20,7 @@ import 'package:newadbee/view/registration/create_account_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// SBIN0003605
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -27,10 +28,12 @@ Future<void> main() async {
   bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
   bool isOtpVerified = prefs.getBool('isOtpVerified') ?? false;
   bool isRegistered = prefs.getBool('isRegistered') ?? false;
+  bool isDND = prefs.getBool('isDND') ?? false;
   log('isOnBoarded --> ${isOnBoarded.toString()}');
   log('isOtpVerified --> ${isOtpVerified.toString()}');
   log('isRegistered --> ${isRegistered.toString()}');
   log('isLoggedIn --> ${isLoggedIn.toString()}');
+  log('isDND --> ${isDND.toString()}');
   await Firebase.initializeApp();
   runApp(MyApp(
     isLoggedIn: isLoggedIn,

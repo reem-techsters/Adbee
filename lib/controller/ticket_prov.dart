@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:newadbee/controller/sharedprefs_prov.dart';
 import 'package:newadbee/model/closed_ticket_model.dart';
@@ -6,7 +8,13 @@ import 'package:newadbee/model/profile_model.dart';
 import 'package:newadbee/model/ticket_conversion_model.dart';
 import 'package:newadbee/services/profile_services.dart';
 import 'package:newadbee/services/ticket_services.dart';
+import 'package:newadbee/widgets/custom_snackbar.dart';
 import 'package:provider/provider.dart';
+
+// class FormData {
+//   String text = '';
+//   TextEditingController controller = TextEditingController();
+// }
 
 class TicketProv extends ChangeNotifier {
   final GlobalKey<FormState> createTicketformKey = GlobalKey<FormState>();
@@ -30,7 +38,14 @@ class TicketProv extends ChangeNotifier {
   }
 
 //------
+  int? savedIndex;
+  Future<void> saveTicketIndex(int index) async {
+    savedIndex = index;
 
+    notifyListeners();
+  }
+
+//----
   clear() {
     subjectController.clear();
     queryController.clear();
@@ -126,15 +141,66 @@ class TicketProv extends ChangeNotifier {
   }
 
   final GlobalKey<FormState> myTicketformKey = GlobalKey<FormState>();
-  TextEditingController replyTicketController = TextEditingController();
+  late List<TextEditingController> replyTicketOPENController;
+  late List<TextEditingController> replyTicketCLOSEDController;
 
-  Future<void> replyTicket({required BuildContext context}) async {
-    if (myTicketformKey.currentState!.validate()) {
+  void updateText(int index, String newText) {
+    replyTicketOPENController[index].text = newText;
+    notifyListeners();
+  }
+
+  // TextEditingController replyTicketController = TextEditingController();
+  Future<void> replyTicketOpen({
+    required BuildContext context,
+    required String ticketID,
+    required txtfieldIndex,
+  }) async {
+    log(txtfieldIndex.toString());
+    if (replyTicketOPENController[txtfieldIndex].text.isNotEmpty) {
       notifyListeners();
-      await TicketServices()
-          .replyTicket(context: context, ticketID: '', query: '');
-      clear();
+      log(ticketID.toString());
+      await TicketServices().replyTicket(
+          context: context,
+          ticketID: ticketID,
+          query: replyTicketOPENController[txtfieldIndex].text);
+      replyTicketOPENController[txtfieldIndex].clear();
+      listTicketConversion.clear();
+      if (context.mounted) {
+        getTicketDetails(context,
+            ticketID: listOpenTicket[savedIndex!].ticketId.toString());
+        getOpenTicket(context);
+      }
+
       notifyListeners();
+    } else {
+      showCustomSnackbar(context, 'Add reply to submit', false);
+    }
+  }
+
+  Future<void> replyTicketClosed({
+    required BuildContext context,
+    required String ticketID,
+    required txtfieldIndex,
+  }) async {
+    log(txtfieldIndex.toString());
+    if (replyTicketOPENController[txtfieldIndex].text.isNotEmpty) {
+      notifyListeners();
+      log(ticketID.toString());
+      await TicketServices().replyTicket(
+          context: context,
+          ticketID: ticketID,
+          query: replyTicketCLOSEDController[txtfieldIndex].text);
+      replyTicketOPENController[txtfieldIndex].clear();
+      listTicketConversion.clear();
+      if (context.mounted) {
+        getTicketDetails(context,
+            ticketID: listClosedTicket[savedIndex!].ticketId.toString());
+        getOpenTicket(context);
+      }
+
+      notifyListeners();
+    } else {
+      showCustomSnackbar(context, 'Add reply to submit', false);
     }
   }
 

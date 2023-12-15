@@ -92,13 +92,19 @@ class CompleteProfileScreen extends StatelessWidget {
                     kheight10,
                     customFieldName(fieldname: 'Date of birth'),
                     kheight7,
-                    CustomTextFormField(
-                      controller: value.dobController,
-                      validator: (val) => value.validateDateOfBirth(val!),
-                      hintText: 'YYYY/MM/DD',
-                      prefixIcon: Transform.scale(
-                        scale: 0.55,
-                        child: KIcon.cake,
+                    InkWell(
+                      onTap: () {
+                        value.selectDob(context);
+                      },
+                      child: CustomTextFormField(
+                        enabled: false,
+                        controller: value.dobController,
+                        validator: (val) => value.validateDateOfBirth(val!),
+                        hintText: 'YYYY/MM/DD',
+                        prefixIcon: Transform.scale(
+                          scale: 0.55,
+                          child: KIcon.cake,
+                        ),
                       ),
                     ),
                     kheight15,

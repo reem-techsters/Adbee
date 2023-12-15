@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:intl/intl.dart';
 
 String formatTimeString(String timeString) {
+  log(timeString);
   // Parse the input time string
   DateTime time = DateFormat("HH:mm:ss").parse(timeString);
 

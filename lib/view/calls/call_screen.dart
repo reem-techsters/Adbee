@@ -34,8 +34,11 @@ class _CallScreenState extends State<CallScreen>
 
   @override
   void initState() {
+    final callsProvider = Provider.of<CallsFetchProv>(context, listen: false);
     final walletProvider = Provider.of<WalletProv>(context, listen: false);
     walletProvider.getProfileDetails(context);
+    callsProvider.fetchContacts();
+    callsProvider.fetchRecentCalls();
     super.initState();
 
     final provider = Provider.of<CallsFetchProv>(context, listen: false);
@@ -89,7 +92,14 @@ class _CallScreenState extends State<CallScreen>
                           log('checked ${dndMode.toString()}');
                           final callStatus = snapshot.data;
                           if (callStatus!.status ==
-                              PhoneStateStatus.CALL_ENDED) {
+                              PhoneStateStatus.CALL_STARTED) {
+                            provider.isAnswered = true;
+                            print(
+                                '\n\n\n isAnswered is ${provider.isAnswered.toString()}');
+                          }
+                          if (provider.isAnswered == true &&
+                              callStatus!.status ==
+                                  PhoneStateStatus.CALL_ENDED) {
                             final advprovider = Provider.of<AdvertisementProv>(
                                 context,
                                 listen: false);
@@ -114,9 +124,12 @@ class _CallScreenState extends State<CallScreen>
                                         ));
                               } else {
                                 log('DND is ON');
+                                log('because ${provider.isAnswered.toString()}');
                               }
                             });
                             callStatus.status = PhoneStateStatus.NOTHING;
+                            provider.isAnswered = false;
+                            provider.fetchRecentCalls();
                           }
                           return Column(
                             children: [
@@ -227,10 +240,12 @@ class _CallScreenState extends State<CallScreen>
                                               BorderRadius.circular(5.0),
                                         ),
                                         onTap: (index) async {
-                                          // final SharedPreferences prefs =
-                                          //     await SharedPreferences
-                                          //         .getInstance();
-                                          // prefs.setBool('isLoggedIn', false);
+                                          var menuProv = Provider.of<MenuProv>(
+                                              context,
+                                              listen: false);
+                                          bool? dndMode = menuProv.isDND;
+                                          log(dndMode.toString());
+                                          //---
 
                                           await provider.fetchContacts();
                                           provider.searchController.clear();

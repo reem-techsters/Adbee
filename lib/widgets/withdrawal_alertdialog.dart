@@ -40,7 +40,7 @@ class _CustomWithdrawalAlertDialogState
                     },
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.only(left: 38.0),
-                      hintText: 'Enter Amount',
+                      hintText: 'Withdrawal Coins',
                       hintStyle: KFont().hintTextStyle,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25.0),

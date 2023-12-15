@@ -68,30 +68,34 @@ class Referral {
   int? uCurrAge;
   int? uGender;
   String? createdAt;
+  dynamic isRedeemed;
+  dynamic redeemedDate;
 
-  Referral({
-    this.uId,
-    this.uName,
-    this.referredBy,
-    this.uMobno,
-    this.uEmail,
-    this.uDob,
-    this.uCurrAge,
-    this.uGender,
-    this.createdAt,
-  });
+  Referral(
+      {this.uId,
+      this.uName,
+      this.referredBy,
+      this.uMobno,
+      this.uEmail,
+      this.uDob,
+      this.uCurrAge,
+      this.uGender,
+      this.createdAt,
+      this.isRedeemed,
+      this.redeemedDate});
 
   factory Referral.fromJson(Map<String, dynamic> json) => Referral(
-        uId: json["u_id"],
-        uName: json["u_name"],
-        referredBy: json["referred_by"],
-        uMobno: json["u_mobno"],
-        uEmail: json["u_email"],
-        uDob: json["u_dob"] == null ? null : DateTime.parse(json["u_dob"]),
-        uCurrAge: json["u_curr_age"],
-        uGender: json["u_gender"],
-        createdAt: json["created_at"],
-      );
+      uId: json["u_id"],
+      uName: json["u_name"],
+      referredBy: json["referred_by"],
+      uMobno: json["u_mobno"],
+      uEmail: json["u_email"],
+      uDob: json["u_dob"] == null ? null : DateTime.parse(json["u_dob"]),
+      uCurrAge: json["u_curr_age"],
+      uGender: json["u_gender"],
+      createdAt: json["created_at"],
+      isRedeemed: ["Is_redeemed"],
+      redeemedDate: ["reedemed_dat"]);
 
   Map<String, dynamic> toJson() => {
         "u_id": uId,
@@ -104,5 +108,7 @@ class Referral {
         "u_curr_age": uCurrAge,
         "u_gender": uGender,
         "created_at": createdAt,
+        "Is_redeemed": isRedeemed,
+        "reedemed_dat": redeemedDate
       };
 }

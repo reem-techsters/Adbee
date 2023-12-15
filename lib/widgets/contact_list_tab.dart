@@ -17,6 +17,7 @@ contactListTab({
         child: contacts.isEmpty
             ? Center(child: Text('No Contacts'))
             : ListView.separated(
+                padding: EdgeInsets.zero,
                 separatorBuilder: (context, index) {
                   return kheight20;
                 },
@@ -28,57 +29,60 @@ contactListTab({
                       ? contacts[index]
                       : provider.searchData[index];
 
-                  return Container(
-                    color: Colors.transparent,
-                    child: InkWell(
-                      onTap: () async {
-                        await FlutterPhoneDirectCaller.callNumber(
-                            contact.phones!.first.value.toString());
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          kWidth20,
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                contact.displayName.toString(),
-                                style: TextStyle(
-                                    fontFamily: 'Roboto',
-                                    fontWeight: FontWeight.w300),
-                              ),
-                              kheight7,
-                              Text(
-                                contact.phones?.isNotEmpty ?? false
-                                    ? contact.phones!.first.value ?? ''
-                                    : '',
-                                style: TextStyle(
-                                    fontFamily: 'Roboto',
-                                    fontWeight: FontWeight.w300),
-                              ),
-                            ],
-                          ),
-                          Expanded(child: SizedBox()),
-                          IconButton(
-                            onPressed: () async {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => ContactDetailsScreen(
-                                      index: index,
-                                    ),
-                                  ));
+                  return contact.displayName == null
+                      ? SizedBox.shrink()
+                      : Container(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: () async {
+                              await FlutterPhoneDirectCaller.callNumber(
+                                  contact.phones!.first.value.toString());
                             },
-                            icon: Transform.scale(
-                              scale: 0.85,
-                              child: KIcon.arrowRight,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                kWidth20,
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      contact.displayName.toString(),
+                                      style: TextStyle(
+                                          fontFamily: 'Roboto',
+                                          fontWeight: FontWeight.w300),
+                                    ),
+                                    kheight7,
+                                    Text(
+                                      contact.phones?.isNotEmpty ?? false
+                                          ? contact.phones!.first.value ?? ''
+                                          : '',
+                                      style: TextStyle(
+                                          fontFamily: 'Roboto',
+                                          fontWeight: FontWeight.w300),
+                                    ),
+                                  ],
+                                ),
+                                Expanded(child: SizedBox()),
+                                IconButton(
+                                  onPressed: () async {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              ContactDetailsScreen(
+                                            index: index,
+                                          ),
+                                        ));
+                                  },
+                                  icon: Transform.scale(
+                                    scale: 0.85,
+                                    child: KIcon.arrowRight,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                  );
+                        );
                 },
               ),
       )

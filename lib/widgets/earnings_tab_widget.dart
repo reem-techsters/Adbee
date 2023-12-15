@@ -47,9 +47,9 @@ earningsTab({
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                listEarnings[index].campType == "image\/jpg"
-                                    ? 'Image Ad Reward'
-                                    : 'Video Ad Reward',
+                                listEarnings[index].campType == "video/mp4"
+                                    ? 'Video Ad Reward'
+                                    : 'Image Ad Reward',
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               kheight7,

@@ -29,6 +29,7 @@ class _WalletScreenState extends State<WalletScreen>
 
     provider.getReferral(context);
     provider.getProfileDetails(context);
+    provider.getEarnings(context);
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
   }

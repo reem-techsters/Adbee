@@ -14,42 +14,52 @@ import 'package:phone_state/phone_state.dart';
 import 'package:provider/provider.dart';
 
 iosRecentcallsScreen({required FocusNode? focusNode}) {
-  return StreamBuilder<PhoneState>(
-      stream: PhoneState.stream,
-      initialData: PhoneState.nothing(),
-      builder: (context, snapshot) {
-        var menuProv = Provider.of<MenuProv>(context, listen: false);
-        bool? dndMode = menuProv.isDND;
-        log('checked ${dndMode.toString()}');
-        final callStatus = snapshot.data;
-        if (callStatus!.status == PhoneStateStatus.CALL_ENDED) {
-          final advprovider =
-              Provider.of<AdvertisementProv>(context, listen: false);
-          dndMode == false ? advprovider.getCampaignDetails(context) : null;
-          Future.delayed(Duration(seconds: 3), () {
-            if (dndMode == false) {
-              advprovider.listCampaign[0].campType == "video/mp4"
-                  ? Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AdvertisementScreen(),
-                      ))
-                  : Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ImageAdvertisement(),
-                      ));
-            } else {
-              log('DND is ON');
-            }
-          });
-          callStatus.status = PhoneStateStatus.NOTHING;
-        }
-        return Scaffold(
-          body: Padding(
-              padding: EdgeInsets.all(12.0),
-              child: Consumer<CallsFetchProv>(
-                builder: (context, value, child) {
+  return Scaffold(
+    body: Padding(
+        padding: EdgeInsets.all(12.0),
+        child: Consumer<CallsFetchProv>(
+          builder: (context, value, child) {
+            return StreamBuilder(
+                stream: PhoneState.stream,
+                initialData: PhoneState.nothing(),
+                builder: (context, snapshot) {
+                  var menuProv = Provider.of<MenuProv>(context, listen: false);
+                  bool? dndMode = menuProv.isDND;
+                  log('checked ${dndMode.toString()}');
+                  final callStatus = snapshot.data;
+                  if (callStatus!.status == PhoneStateStatus.CALL_STARTED) {
+                    value.isAnswered = true;
+                    print(
+                        '\n\n\n isAnswered is ${value.isAnswered.toString()}');
+                  }
+                  if (value.isAnswered == true &&
+                      callStatus!.status == PhoneStateStatus.CALL_ENDED) {
+                    final advprovider =
+                        Provider.of<AdvertisementProv>(context, listen: false);
+                    dndMode == false
+                        ? advprovider.getCampaignDetails(context)
+                        : null;
+                    Future.delayed(Duration(seconds: 3), () {
+                      if (dndMode == false) {
+                        advprovider.listCampaign[0].campType == "video/mp4"
+                            ? Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => AdvertisementScreen(),
+                                ))
+                            : Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ImageAdvertisement(),
+                                ));
+                      } else {
+                        log('DND is ON');
+                        log('because ${value.isAnswered.toString()}');
+                      }
+                    });
+                    callStatus.status = PhoneStateStatus.NOTHING;
+                    value.isAnswered = false;
+                  }
                   return Column(
                     children: [
                       Row(
@@ -146,8 +156,8 @@ iosRecentcallsScreen({required FocusNode? focusNode}) {
                               contacts: value.contacts, provider: value)),
                     ],
                   );
-                },
-              )),
-        );
-      });
+                });
+          },
+        )),
+  );
 }

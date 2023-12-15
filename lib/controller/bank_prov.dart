@@ -50,7 +50,9 @@ class BankProv extends ChangeNotifier {
           context: context,
           accnum: accNumberController.text,
           ifsc: ifscController.text,
-          upi: upiController.text);
+          upi: upiController.text,
+          bankname: banknameController.text,
+          branch: branchnameController.text);
     }
     if (context.mounted) getBankDetails(context);
   }

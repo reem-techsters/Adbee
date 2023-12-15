@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:newadbee/controller/sharedprefs_prov.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MenuProv extends ChangeNotifier {
   bool isMenu = false;
@@ -26,13 +27,15 @@ class MenuProv extends ChangeNotifier {
 
   bool? isDND;
   bool isSwitched = false;
-  void toggleSwitch(BuildContext context) {
-    var sharedProvider = Provider.of<SharedPrefsProv>(context, listen: false);
+  Future<void> toggleSwitch(BuildContext context) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final sharedProvider = Provider.of<SharedPrefsProv>(context, listen: false);
 
-    isSwitched = !isSwitched; // Toggle the value
-    sharedProvider.setBool('isDND', isSwitched);
-
-    log('Switch Button is ${isSwitched ? 'ON' : 'OFF'}');
+    isSwitched = !isSwitched;
+    await sharedProvider.setBool('isDND', isSwitched);
+    notifyListeners();
+    isDND = prefs.getBool('isDND') ?? false;
+    log('isDND menun --> ${isDND.toString()}');
     notifyListeners();
   }
 
